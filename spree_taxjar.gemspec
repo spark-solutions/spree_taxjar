@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_taxjar'
-  s.version     = '3.2.0'
+  s.version     = '3.3.0'
   s.summary     = 'Spree extension to calculate sales tax in states of USA'
   s.description = 'Spree extension for providing TaxJar services in USA'
   s.required_ruby_version = '>= 2.1.0'
@@ -14,13 +14,14 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency('spree_core', '~> 3.2.0')
+  spree_version = '>= 3.1.0', '< 4.0'
+  s.add_dependency 'spree_core', spree_version
   s.add_dependency 'taxjar-ruby', '~> 1.5'
 
   s.add_development_dependency 'capybara', '~> 2.6'
   s.add_development_dependency 'coffee-rails', '~> 4.2.1'
   s.add_development_dependency 'database_cleaner', '~> 1.5.3'
-  s.add_development_dependency 'factory_girl', '~> 4.5'
+  s.add_development_dependency 'factory_bot'
   s.add_development_dependency 'ffaker', '~> 2.2.0'
   s.add_development_dependency 'rspec-rails', '~> 3.4'
   s.add_development_dependency 'sass-rails', '~> 5.0.0'
@@ -31,4 +32,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-activemodel-mocks'
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'webmock'
+  s.add_development_dependency 'pg'
+  s.add_development_dependency 'appraisal'
+  s.add_development_dependency 'mysql2'
 end
