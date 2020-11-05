@@ -96,7 +96,7 @@ module Spree
         if item.is_a?(Spree::LineItem)
           [Spree::LineItem.to_s, order.id, item.id, address.state_id, address.zipcode, item.taxable_amount, :amount_to_collect]
         else
-          [Spree::Shipment.to_s, order.id, item.id, address.state_id, address.zipcode, item.cost, item.adjustments.select { |adjustment| adjustment.source_type != Spree::TaxRate.to_s }.map(&:amount).sum.to_f, :amount_to_collect]
+          [Spree::Shipment.to_s, order.id, item.id, address.state_id, address.zipcode, item.cost, item.adjustments.where.not(source_type: Spree::TaxRate.to_s).sum(:amount), :amount_to_collect]
         end
       end
   end

@@ -5,7 +5,10 @@ module SpreeTaxjar
     private
 
     def taxjar_applicable?(order)
-      ::Spree::TaxRate.match(order.tax_zone).any? { |rate| rate.calculator_type == "Spree::Calculator::TaxjarCalculator" }
+      ::Spree::TaxRate.joins(:calculator)
+                      .match(order.tax_zone)
+                      .where(spree_calculators: { type: ::Spree::Calculator::TaxjarCalculator.to_s }  )
+                      .any?
     end
   end
 end

@@ -118,7 +118,7 @@ module Spree
       end
 
       def taxable_line_items_params
-        @order.line_items.map do |item|
+        @order.line_items.includes(:tax_category).map do |item|
           {
             id: item.id,
             quantity: item.quantity,
@@ -189,7 +189,7 @@ module Spree
       end
 
       def line_item_params
-        @order.line_items.map do |item|
+        @order.line_items.includes(:variant, :product, :tax_category).map do |item|
           unit_price = item.taxable_amount / item.quantity
           {
             quantity: item.quantity,
@@ -210,7 +210,7 @@ module Spree
       end
 
       def adjustments_total(adjustments)
-        adjustments.select { |adjustment| adjustment.source_type != Spree::TaxRate.to_s }.map(&:amount).sum.to_f
+        adjustments.where.not(source_type: Spree::TaxRate.to_s).sum(:amount)
       end
 
       def client_params
