@@ -18,20 +18,12 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'spree_backend', spree_version
   s.add_dependency 'taxjar-ruby', '~> 2.6.0'
+  s.add_dependency 'deface', '~> 1.0'
 
-  s.add_development_dependency 'capybara', '~> 2.6'
-  s.add_development_dependency 'coffee-rails', '~> 4.2.1'
-  s.add_development_dependency 'database_cleaner', '~> 1.6'
-  s.add_development_dependency 'factory_bot', '~> 4.10'
-  s.add_development_dependency 'ffaker', '~> 2.9'
-  s.add_development_dependency 'rspec-rails', '4.0.0.beta3'
-  s.add_development_dependency 'sass-rails', '~> 5.0.0'
-  s.add_development_dependency 'selenium-webdriver', '~> 2.53.4'
-  s.add_development_dependency 'simplecov', '~> 0.12.0'
-  s.add_development_dependency 'sqlite3', '~> 1.4'
+  s.add_development_dependency 'spree_dev_tools'
+
   s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'rspec-activemodel-mocks'
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'webmock'
-  s.add_development_dependency 'appraisal'
 end
